@@ -25,7 +25,8 @@ export class SaveController{
     }
 
     saveGame(game:Clicky){
-        let saveGame = new Savegame(game.units);
+        //TODO: add encryption or whatever to piss off cheaters lol
+        let saveGame = new Savegame(game);
 
         this.storage.setItem(this.SAVEGAME_KEY, JSON.stringify(saveGame));
         console.log(`Savegame saved with ${saveGame.units} units!`);
