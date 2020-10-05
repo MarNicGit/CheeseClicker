@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: ['./src/scripts/main.ts', './src/style/site.scss'],
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
@@ -23,9 +23,6 @@ module.exports = {
 					{
 						loader: 'css-loader?-url'
 					},
-					{
-						loader: 'postcss-loader'
-					},
           {
             loader: 'sass-loader',
             options: {
@@ -39,4 +36,7 @@ module.exports = {
     resolve: {
       extensions: [ '.tsx', '.ts', '.js' ],
     },
+    optimization: {
+      minimize: false
+    }
   };
