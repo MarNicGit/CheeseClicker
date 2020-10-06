@@ -1,82 +1,76 @@
-import { SaveController } from "./saveController";
+import { SaveController } from "./controllers/saveController";
+import { ClickerCollection } from "./models/clickers/clickerCollection";
+import { ClickerType } from "./enums";
+import { UpdateOperation } from "./enums/UpdateOperation";
+import { uniqueSort } from "jquery";
 
 export class Clicky {
-    units: number;
-    clickers: number;
-    multiplier: number;
-    clickBtn: JQuery<HTMLElement>;
-    counterLbl: JQuery<HTMLElement>;
-    saveBtn: JQuery<HTMLElement>;
+    unitsRaw: number;
+    clickers: ClickerCollection;
+    clickMultiplier: number;
+    baseMultiplier: number;
+
+    public get units() : number {
+        return Math.round(this.unitsRaw);
+    }
+
 
     //-important variables----------------------
-
     AUTOCLICKER_MIN_UNITS = 10;
-    buyAutoclickerBtn: JQuery<HTMLElement>;
+    UNIT = 'cheese';
 
-    constructor(public saveController:SaveController){
-        this.units = 0;
-        this.multiplier = 1;
+    //-autoclicker multipliers------------------
+    multi_autoClicker: Number;
+
+    constructor(
+        public saveController:SaveController
+        ){
+        this.unitsRaw = 0;
+        this.baseMultiplier = 1;
+        this.clickMultiplier = 1;
+
+        this.clickers = new ClickerCollection(this);
 
         saveController.loadGame(this);
-
-        this.clickBtn = $('#clicker');
-        this.saveBtn = $('#saveBtn');
-        this.counterLbl = $('#counter');
-        this.buyAutoclickerBtn = $('#buyAutoclickerBtn');
     }
 
     init(){
         console.log('init');
-        this.update();
-
-        this.registerListeners();
-    }
-
-    registerListeners() {
-        this.clickBtn.on('click', () => this.click());
-        this.saveBtn.on('click', () => this.saveController.saveGame(this));
-        this.buyAutoclickerBtn.on('click',()=> this.buyAutoclicker());
-    }
-
-    update(){
-        this.counterLbl.text(this.units);
-
-        if(this.units >= this.AUTOCLICKER_MIN_UNITS && this.buyAutoclickerBtn.hasClass('hidden')){
-            this.buyAutoclickerBtn.removeClass('hidden');
-        }
     }
 
     click(){
         console.log('gj you click');
-        this.increaseUnits(1);
+        this.updateUnits(1);
     }
 
-    increaseUnits(amount:number){
-        let increase = amount * this.multiplier;
-        this.units += increase;
+    updateUnits(amount:number, operation:UpdateOperation = UpdateOperation.Add){
+        let sum = (amount * this.clickMultiplier * this.baseMultiplier);
 
-        this.update();
+        switch (operation) {
+            case UpdateOperation.Add:
+                this.unitsRaw += sum;
+                break;
+            case UpdateOperation.Subtract:
+                //if this brings us under zero, assume the player is just really fast and the GUI didn't keep up!
+                if(this.unitsRaw - sum < 0){
+                    break;
+                }
+
+                this.unitsRaw -= sum;
+                break;
+        }
     }
 
     buyAutoclicker(){
         this.validateGame();
 
-        this.clickers += 1;
-        this.units -= 10;
-
-        this.addClicker();
-    }
-
-    addClicker(){
-        let timer = setInterval(()=>{
-            this.increaseUnits(1);
-        }, 1000)
+        this.clickers.addClicker(ClickerType.AutoClicker);
     }
 
     validateGame() {
         let gameIsValid = true;
 
-        if(this.units < this.AUTOCLICKER_MIN_UNITS){//fuckin cheater
+        if(this.units < 0){//fuckin cheater
             gameIsValid = false;
         }
 
@@ -87,9 +81,12 @@ export class Clicky {
         }
     }
 
+    /**
+     * ONLY CALL THIS FUNCTION IF THE PLAYER IS BEING A CHEATING PIECE OF SHIT
+     */
     selfDestruct(){
-        //ONLY CALL THIS FUNCTION IF THE PLAYER IS BEING A CHEATING PIECE OF SHIT
-        this.clickers = 100000;
-        this.multiplier = -1; //negative multipliers make the game go poopoo lol
+        this.baseMultiplier = -1; //negative multipliers make the game go poopoo lol
     }
+
+
 }
