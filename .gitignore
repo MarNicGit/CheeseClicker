@@ -101,3 +101,4 @@ dist/bundle.js
 dist/css/site.css
 dist/clicky.js
 dist/clicky.js.map
+dist/img/*
