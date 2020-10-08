@@ -10,3 +10,4 @@ var guiController = new GuiController(game);
 
 game.init();
 console.log('welcome to clicky game pls enjoy');
+
