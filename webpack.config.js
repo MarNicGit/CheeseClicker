@@ -1,5 +1,5 @@
 const path = require('path');
-
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: ['./src/scripts/main.ts', './src/style/site.scss'],
     devtool: 'source-map',
@@ -38,5 +38,16 @@ module.exports = {
     },
     optimization: {
       minimize: false
-    }
+    },
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: 'src/assets/img/*.png',
+            to: 'img/',
+            flatten: true
+          }
+        ]
+      })
+    ]
   };
