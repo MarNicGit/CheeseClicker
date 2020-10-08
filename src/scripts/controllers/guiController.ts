@@ -40,7 +40,7 @@ export class GuiController{
 
     updateState(){
         let prevUnitValue = this.counterLbl.text();
-        if(prevUnitValue != this.game.units.toString()){
+        if(prevUnitValue != this.game.units.toFixed(2)){
             this.counterLbl.text(this.game.units.toFixed(2));
         }
 
