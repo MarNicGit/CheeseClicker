@@ -97,8 +97,4 @@ tests/cases/user/puppeteer/puppeteer
 tests/cases/user/axios-src/axios-src
 tests/cases/user/prettier/prettier
 .eslintcache
-dist/bundle.js
-dist/css/site.css
-dist/clicky.js
-dist/clicky.js.map
-dist/img/*
+**/dist

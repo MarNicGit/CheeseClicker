@@ -46,7 +46,12 @@ module.exports = {
             from: 'src/assets/img/*.png',
             to: 'img/',
             flatten: true
-          }
+          },
+          {
+            from: 'src/index.html',
+            to: 'index.html',
+            flatten: true
+          },
         ]
       })
     ]
