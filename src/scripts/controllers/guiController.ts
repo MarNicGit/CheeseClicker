@@ -18,7 +18,7 @@ export class GuiController{
     }
 
     setElements(){
-        this.clickBtn = $('#clicker');
+        this.clickBtn = $('#cheese');
         this.saveBtn = $('#saveBtn');
         this.counterLbl = $('#counterLbl');
         this.buyAutoclickerBtn = $('#buyAutoclickerBtn');
