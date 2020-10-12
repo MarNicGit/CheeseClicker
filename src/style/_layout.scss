@@ -1,11 +1,40 @@
+@use 'vars' as *;
+
+html,body{
+    height:100%;
+}
+
+body{
+    font-family: $font-rubik;
+    display: flex;
+    flex-direction: column;
+}
+
 main{
     display: flex;
     flex-direction: column;
     justify-items: center;
+    flex-grow: 1;
 
     .container{
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 1em;
+    }
 
+    #navContainer{
+        flex-direction: row;
+        justify-content: end;
+    }
+
+    #cheeseContainer{
+        #counterLbl{
+            font-family: $font-fredoka;
+            font-size: 2em;
+        }
+
+        flex-grow: 1;
+        background: radial-gradient();
     }
 }

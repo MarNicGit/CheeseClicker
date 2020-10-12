@@ -1,0 +1,37 @@
+.btn{
+    $size: 20px;
+
+    height: $size;
+    width: $size;
+    padding:2px;
+    background-image: url('../img/icon-btn.png');
+    border: none;
+
+    &:hover{
+        background-image: url('../img/icon-btn-hover.png');
+    }
+
+    &:active{
+        background-image: url('../img/icon-btn-active.png');
+    }
+
+    .icon{
+        $iconSize: 16px;
+
+        height: $iconSize;
+        width: $iconSize;
+        background-position: center;
+    }
+}
+
+#saveBtn{
+    .icon{
+        background-image: url('../img/icon-save.png');
+    }
+}
+
+#resetSaveBtn{
+    .icon{
+        background-image: url('../img/icon-reset.png');
+    }
+}
