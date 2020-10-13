@@ -4,7 +4,7 @@ import { ClickerType } from "./enums";
 import { UpdateOperation } from "./enums/UpdateOperation";
 import { uniqueSort } from "jquery";
 
-export class Clicky {
+export class Game {
     unitsRaw: number;
     clickers: ClickerCollection;
     clickMultiplier: number;

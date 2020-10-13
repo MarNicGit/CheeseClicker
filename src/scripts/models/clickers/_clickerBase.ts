@@ -1,4 +1,4 @@
-import { Clicky } from "../../clicky";
+import { Game } from "../../game";
 import { ClickerType } from "../../enums";
 import { Ticker } from "../ticker";
 
@@ -13,7 +13,7 @@ export class ClickerBase{
     clickerType: ClickerType;
     element: JQuery<HTMLElement>;
 
-    constructor(public game:Clicky){
+    constructor(public game:Game){
         this.amount = 0;
         // this.element = game.
     }
