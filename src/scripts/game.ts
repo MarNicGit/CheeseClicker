@@ -32,6 +32,7 @@ export class Game {
         this.clickers = new ClickerCollection(this);
 
         saveController.loadGame(this);
+        saveController.initAutosave(this);
     }
 
     init(){

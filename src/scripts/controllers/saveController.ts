@@ -2,14 +2,26 @@ import { Game } from "../game";
 import { ClickerType } from "../enums";
 import { ClickerCollection } from "../models/clickers/clickerCollection";
 import { Savegame } from "../models/savegame";
+import { Ticker } from "../models/ticker";
 
 export class SaveController{
 
     SAVEGAME_KEY = 'clicky_save';
     storage: Storage;
+    public autosaveTicker: Ticker;
 
     constructor(){
         this.storage = window.localStorage;
+    }
+
+    /**
+     * Initiates the autosaver
+     * @param game Game instance
+     */
+    initAutosave(game:Game){
+        this.autosaveTicker = new Ticker(()=>{
+            this.saveGame(game);
+        }, 5*60*1000); //5 minutes
     }
 
     loadGame(game:Game){
