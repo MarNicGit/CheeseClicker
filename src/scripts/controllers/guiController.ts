@@ -62,7 +62,7 @@ export class GuiController{
             this.buyAutoclickerBtn.prop('disabled', true);
         }
 
-        let label = `Buy autoclicker - ${this.game.clickers.getClickerCost(ClickerType.AutoClicker).toFixed(2)} units`;
+        let label = `Buy autoclicker - ${this.game.clickers.getClickerCost(ClickerType.AutoClicker)} units`;
 
         if(this.buyAutoclickerBtn.text() != label){
             this.buyAutoclickerBtn.text(label);
