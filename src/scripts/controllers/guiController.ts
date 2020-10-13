@@ -18,7 +18,7 @@ export class GuiController{
     }
 
     setElements(){
-        this.clickBtn = $('#clicker');
+        this.clickBtn = $('#cheese');
         this.saveBtn = $('#saveBtn');
         this.counterLbl = $('#counterLbl');
         this.buyAutoclickerBtn = $('#buyAutoclickerBtn');
@@ -41,7 +41,7 @@ export class GuiController{
     updateState(){
         let prevUnitValue = this.counterLbl.text();
         if(prevUnitValue != this.game.units.toString()){
-            this.counterLbl.text(this.game.units.toFixed(2));
+            this.counterLbl.text(this.game.units);
         }
 
         this.updateButtons();
@@ -62,7 +62,7 @@ export class GuiController{
             this.buyAutoclickerBtn.prop('disabled', true);
         }
 
-        let label = `Buy autoclicker - ${this.game.clickers.getClickerCost(ClickerType.AutoClicker).toFixed(2)} units`;
+        let label = `Buy autoclicker - ${this.game.clickers.getClickerCost(ClickerType.AutoClicker)} units`;
 
         if(this.buyAutoclickerBtn.text() != label){
             this.buyAutoclickerBtn.text(label);

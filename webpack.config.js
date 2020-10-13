@@ -1,10 +1,10 @@
 const path = require('path');
-
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: ['./src/scripts/main.ts', './src/style/site.scss'],
     devtool: 'source-map',
     output: {
-      filename: 'bundle.js',
+      filename: 'clicky.js',
       path: path.resolve(__dirname, 'dist'),
     },
     module: {
@@ -38,5 +38,21 @@ module.exports = {
     },
     optimization: {
       minimize: false
-    }
+    },
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: 'src/assets/img/*.png',
+            to: 'img/',
+            flatten: true
+          },
+          {
+            from: 'src/index.html',
+            to: 'index.html',
+            flatten: true
+          },
+        ]
+      })
+    ]
   };

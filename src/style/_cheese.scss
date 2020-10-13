@@ -1,0 +1,18 @@
+@use 'vars';
+
+#cheese{
+
+    transition: transform ease-in-out 0.1s;
+    transition: filter ease-out 0.1s;
+    transform: scale(1);
+    cursor: pointer;
+    filter: drop-shadow(0 0 5px rgba(200,128,0, 0));
+    &:hover{
+        transform: scale(1.05);
+    }
+
+    &:active{
+        transform: scale(0.95);
+        filter: drop-shadow(0 0 5px rgba(200,128,0, 0.9));
+    }
+}
