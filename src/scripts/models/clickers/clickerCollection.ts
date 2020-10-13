@@ -1,4 +1,4 @@
-import { Clicky } from "../../clicky";
+import { Game } from "../../game";
 import { ClickerType } from "../../enums";
 import { UpdateOperation } from "../../enums/UpdateOperation";
 import * as clickers from "./clickers";
@@ -41,7 +41,7 @@ export class ClickerCollection{
         return clicker.getCost();
     }
 
-    constructor(public game: Clicky) {
+    constructor(public game: Game) {
         this.autoClicker = new clickers.AutoClicker(game);
         this.kiloClicker = new clickers.KiloClicker(game);
         this.megaClicker = new clickers.MegaClicker(game);

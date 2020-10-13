@@ -1,4 +1,4 @@
-import { Clicky } from "../clicky";
+import { Game } from "../game";
 import { ClickerType } from "../enums";
 import { ClickerCollection } from "./clickers/clickerCollection";
 
@@ -6,7 +6,7 @@ export class Savegame{
     unitsRaw: number;
     clickerCollection: any; //TODO: make this a proper type
 
-    constructor(game:Clicky){
+    constructor(game:Game){
         this.unitsRaw = game.unitsRaw;
         this.clickerCollection = {};
         game.clickers.listClickers().forEach(clicker => {

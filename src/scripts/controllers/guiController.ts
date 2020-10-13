@@ -1,4 +1,4 @@
-import { Clicky } from "../clicky";
+import { Game } from "../game";
 import { ClickerType } from "../enums";
 import { Ticker } from "../models/ticker";
 
@@ -11,7 +11,7 @@ export class GuiController{
     buyAutoclickerBtn: JQuery<HTMLElement>;
     resetSaveBtn: JQuery<HTMLElement>;
 
-    constructor(public game:Clicky){
+    constructor(public game:Game){
         this.setElements();
         this.registerListeners();
         this.initTicker();

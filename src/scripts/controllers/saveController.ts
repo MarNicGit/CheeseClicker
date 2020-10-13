@@ -1,4 +1,4 @@
-import { Clicky } from "../clicky";
+import { Game } from "../game";
 import { ClickerType } from "../enums";
 import { ClickerCollection } from "../models/clickers/clickerCollection";
 import { Savegame } from "../models/savegame";
@@ -12,7 +12,7 @@ export class SaveController{
         this.storage = window.localStorage;
     }
 
-    loadGame(game:Clicky){
+    loadGame(game:Game){
         let existingSave = this.storage.getItem(this.SAVEGAME_KEY);
 
         if(existingSave == null || existingSave == 'undefined' || existingSave == String.Empty){ //empty string really shouldn't happen but oh well
@@ -40,7 +40,7 @@ export class SaveController{
         }
     }
 
-    saveGame(game:Clicky){
+    saveGame(game:Game){
         //TODO: add encryption or whatever to piss off cheaters lol
         let saveGame = new Savegame(game);
 
@@ -54,7 +54,7 @@ export class SaveController{
      * TODO: super dollars or whatever for a permanent boost
      * @param game Clicky game
      */
-    resetGame(game:Clicky){
+    resetGame(game:Game){
         this.storage.removeItem(this.SAVEGAME_KEY);
 
         //kill off all tickers

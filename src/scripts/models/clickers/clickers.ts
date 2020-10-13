@@ -1,10 +1,10 @@
-import { Clicky } from "../../clicky";
+import { Game } from "../../game";
 import { ClickerType } from "../../enums";
 import { ClickerBase } from "./_clickerBase";
 
 export class AutoClicker extends ClickerBase{
 
-    constructor(public game:Clicky){
+    constructor(public game:Game){
         super(game);
         this.baseIncrement = 0.1;
         this.baseCost = 10;
@@ -17,7 +17,7 @@ export class AutoClicker extends ClickerBase{
 
 export class KiloClicker extends ClickerBase{
 
-    constructor(public game:Clicky){
+    constructor(public game:Game){
         super(game);
         this.baseIncrement = 1;
         this.baseCost = 100;
@@ -30,7 +30,7 @@ export class KiloClicker extends ClickerBase{
 
 export class MegaClicker extends ClickerBase{
 
-    constructor(public game:Clicky){
+    constructor(public game:Game){
         super(game);
         this.baseIncrement = 1;
         this.baseCost = 1500;
@@ -43,7 +43,7 @@ export class MegaClicker extends ClickerBase{
 
 export class GigaClicker extends ClickerBase{
 
-    constructor(public game:Clicky){
+    constructor(public game:Game){
         super(game);
         this.baseIncrement = 2;
         this.baseCost = 10000;
@@ -56,7 +56,7 @@ export class GigaClicker extends ClickerBase{
 
 export class TeraClicker extends ClickerBase{
 
-    constructor(public game:Clicky){
+    constructor(public game:Game){
         super(game);
         this.baseIncrement = 3;
         this.baseCost = 100000;
