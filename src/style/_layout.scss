@@ -62,6 +62,8 @@ main{
     }
 
     #cheeseContainer{
+        justify-content: center;
+        
         #counterLbl{
             font-family: $font-fredoka;
             font-size: 2em;
