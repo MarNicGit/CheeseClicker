@@ -1,31 +1,34 @@
 import { Game } from "../../game";
-import { ClickerType } from "../../enums";
-import { UpdateOperation } from "../../enums/UpdateOperation";
+import { UpdateOperation } from "../../enums/updateOperation";
 import * as clickers from "./clickers";
 import { ClickerBase } from "./_clickerBase";
+import { ClickerType } from "./clickerType";
 
 export class ClickerCollection{
 
     autoClicker: clickers.AutoClicker;
-    kiloClicker: clickers.KiloClicker;
-    megaClicker: clickers.MegaClicker;
-    gigaClicker: clickers.GigaClicker;
-    teraClicker: clickers.TeraClicker;
+    mouseClicker: clickers.MouseClicker;
+    cowClicker: clickers.CowClicker;
+    mineClicker: clickers.MineClicker;
+    hedgefundClicker: clickers.HedgefundClicker;
+
+    public activeClickers: Array<ClickerType>;
 
     addClicker(type:ClickerType) {
         let clicker = this.getClicker(type);
-        this.game.updateUnits(clicker.getCost(), UpdateOperation.Subtract);
-        clicker.amount += 1;
+        if(this.game.updateUnits(clicker.getCost(), UpdateOperation.Subtract)){
+            clicker.amount += 1;
+        }
     }
 
     public listClickers():Array<ClickerBase> //this can probably be better I guess
     {
         let clickerList = [
             this.autoClicker,
-            this.kiloClicker,
-            this.megaClicker,
-            this.gigaClicker,
-            this.teraClicker
+            this.mouseClicker,
+            this.cowClicker,
+            this.mineClicker,
+            this.hedgefundClicker
         ];
 
         return clickerList;
@@ -41,11 +44,17 @@ export class ClickerCollection{
         return clicker.getCost();
     }
 
+    public purchaseClicker(type: ClickerType){
+        let clicker = this.getClicker(type);
+        if(this.game.units < clicker.getCost()) return;
+        clicker.amount += 1;
+    }
+
     constructor(public game: Game) {
         this.autoClicker = new clickers.AutoClicker(game);
-        this.kiloClicker = new clickers.KiloClicker(game);
-        this.megaClicker = new clickers.MegaClicker(game);
-        this.gigaClicker = new clickers.GigaClicker(game);
-        this.teraClicker = new clickers.TeraClicker(game);
+        this.mouseClicker = new clickers.MouseClicker(game);
+        this.cowClicker = new clickers.CowClicker(game);
+        this.mineClicker = new clickers.MineClicker(game);
+        this.hedgefundClicker = new clickers.HedgefundClicker(game);
     }
 }

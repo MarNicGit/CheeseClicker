@@ -1,8 +1,7 @@
 import { SaveController } from "./controllers/saveController";
 import { ClickerCollection } from "./models/clickers/clickerCollection";
-import { ClickerType } from "./enums";
-import { UpdateOperation } from "./enums/UpdateOperation";
-import { uniqueSort } from "jquery";
+import { UpdateOperation } from "./enums/updateOperation";
+import { ClickerType } from "./models/clickers/clickerType";
 
 export class Game {
     unitsRaw: number;
@@ -44,21 +43,26 @@ export class Game {
         this.updateUnits(1);
     }
 
+    /**
+     * Updates the unit counter. Returns false if we're trying to subtract more than we have, otherwise returns true.
+     * @param amount Amount to add or subtract
+     * @param operation Add or subtract, defaults to add
+     */
     updateUnits(amount:number, operation:UpdateOperation = UpdateOperation.Add){
         let sum = (amount * this.clickMultiplier * this.baseMultiplier);
 
         switch (operation) {
             case UpdateOperation.Add:
                 this.unitsRaw += sum;
-                break;
+                return true;
             case UpdateOperation.Subtract:
                 //if this brings us under zero, assume the player is just really fast and the GUI didn't keep up!
                 if(this.unitsRaw - sum < 0){
-                    break;
+                    return false;
                 }
 
                 this.unitsRaw -= sum;
-                break;
+                return true;
         }
     }
 
@@ -66,6 +70,12 @@ export class Game {
         this.validateGame();
 
         this.clickers.addClicker(ClickerType.AutoClicker);
+    }
+
+    buyClicker(type:ClickerType){
+        this.validateGame();
+
+        this.clickers.addClicker(type);
     }
 
     validateGame() {
