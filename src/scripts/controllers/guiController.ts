@@ -5,11 +5,11 @@ import { Ticker } from "../models/ticker";
 export class GuiController{
     guiTicker: Ticker;
 
-    clickBtn: JQuery<HTMLElement>;
-    counterLbl: JQuery<HTMLElement>;
-    saveBtn: JQuery<HTMLElement>;
-    resetSaveBtn: JQuery<HTMLElement>;
-    buttonContainer: JQuery<HTMLElement>;
+    clickBtn: HTMLElement;
+    counterLbl: HTMLElement;
+    saveBtn: HTMLElement;
+    resetSaveBtn: HTMLElement;
+    buttonContainer: HTMLElement;
 
     constructor(public game:Game){
         this.setElements();
@@ -18,22 +18,27 @@ export class GuiController{
     }
 
     setElements(){
-        this.clickBtn = $('#cheese');
-        this.saveBtn = $('#saveBtn');
-        this.counterLbl = $('#counterLbl');
-        this.resetSaveBtn = $('#resetSaveBtn');
-        this.buttonContainer = $('#upgradeContainer');
+        this.clickBtn = document.getElementById('cheese');
+        this.saveBtn = document.getElementById('saveBtn');
+        this.counterLbl = document.getElementById('counterLbl');
+        this.resetSaveBtn = document.getElementById('resetSaveBtn');
+        this.buttonContainer = document.getElementById('upgradeContainer');
     }
 
     registerListeners() {
-        this.clickBtn.on('click', () => this.game.click());
-        this.saveBtn.on('click', () => this.game.saveController.saveGame(this.game));
-        this.resetSaveBtn.on('click', () => this.game.saveController.resetGame(this.game));
+        this.clickBtn.addEventListener('click', () => this.game.click());
+        this.saveBtn.addEventListener('click', () => this.game.saveController.saveGame(this.game));
+        this.resetSaveBtn.addEventListener('click', () => this.game.saveController.resetGame(this.game));
 
-        this.buttonContainer.on('click','.btn-clicker', (event: JQuery.ClickEvent) => {
-            let type = $(event.currentTarget).data('type') as keyof typeof ClickerType;
-            this.game.buyClicker(ClickerType[type]);
-        });
+        this.buttonContainer.addEventListener('click', (e: Event) => {
+            if(e.target == this.buttonContainer) return;
+            let targetClass = '.btn-clicker';
+            let btn = (e.target as HTMLElement).closest(targetClass);
+
+            if(btn){
+                // do stuff
+            }
+        },false);
     }
 
     initTicker(){
@@ -43,9 +48,10 @@ export class GuiController{
     }
 
     updateState(){
-        let prevUnitValue = this.counterLbl.text();
-        if(prevUnitValue != this.game.units.toString()){
-            this.counterLbl.text(this.game.units);
+        let prevUnitValue = this.counterLbl.innerText;
+        let units = this.game.units.toString();
+        if(prevUnitValue != units){
+            this.counterLbl.innerText = units;
         }
 
         this.updateButtons();
@@ -54,24 +60,24 @@ export class GuiController{
     updateButtons() {
         this.game.clickers.listClickers().forEach(clicker => {
             if(!clicker.hasRendered && clicker.showBtn){
-                this.buttonContainer.append(clicker.renderButton());
+                this.buttonContainer.innerHTML += clicker.renderButton();
             }
         });
 
         this.game.clickers.listClickers().filter(c => c.hasRendered).forEach(clicker => {
-            let element = $(`#${clicker.elementName}`);
+            let element = document.getElementById(`${clicker.elementName}`);
             let clickerCost = clicker.getCost();
 
-            if (this.game.units >= clickerCost && element.prop('disabled')) {
-                element.prop('disabled', false);
-            } else if (this.game.units < clickerCost && !element.prop('disabled')) {
-                element.prop('disabled', true);
+            if (this.game.units >= clickerCost && element.getAttribute('disabled')) {
+                element.setAttribute('disabled', String(false));
+            } else if (this.game.units < clickerCost && !element.getAttribute('disabled')) {
+                element.setAttribute('disabled', String(true));
             }
 
             let html = clicker.renderInnerButton();
 
-            if(element.html() != html){ //just to save on DOM writes
-                element.html(html);
+            if(element.innerHTML != html){ //just to save on DOM writes
+                element.innerHTML = html;
             }
         });
     }

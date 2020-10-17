@@ -66,12 +66,6 @@ export class Game {
         }
     }
 
-    buyAutoclicker(){
-        this.validateGame();
-
-        this.clickers.addClicker(ClickerType.AutoClicker);
-    }
-
     buyClicker(type:ClickerType){
         this.validateGame();
 
