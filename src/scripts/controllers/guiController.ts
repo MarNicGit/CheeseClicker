@@ -36,7 +36,8 @@ export class GuiController{
             let btn = (e.target as HTMLElement).closest(targetClass);
 
             if(btn){
-                // do stuff
+                let type = btn.getAttribute('data-type') as keyof typeof ClickerType;
+                this.game.buyClicker(ClickerType[type]);
             }
         },false);
     }
