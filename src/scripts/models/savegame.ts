@@ -1,6 +1,5 @@
 import { Game } from "../game";
-import { ClickerType } from "../enums";
-import { ClickerCollection } from "./clickers/clickerCollection";
+import { ClickerType } from "./clickers/clickerType";
 
 export class Savegame{
     unitsRaw: number;

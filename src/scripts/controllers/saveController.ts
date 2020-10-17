@@ -1,5 +1,4 @@
 import { Game } from "../game";
-import { ClickerType } from "../enums";
 import { ClickerCollection } from "../models/clickers/clickerCollection";
 import { Savegame } from "../models/savegame";
 import { Ticker } from "../models/ticker";
