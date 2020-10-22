@@ -63,7 +63,7 @@ export class ClickerBase {
     renderButton():string{
         this.hasRendered = true;
         let html = `
-        <div id="${this.elementName}" class="btn-clicker" data-type="${ClickerType[this.clickerType]}">
+        <div id="${this.elementName}" class="btn-clicker" data-type="${ClickerType[this.clickerType]}" disabled="false">
             ${this.renderInnerButton()}
         </div>
         `;
