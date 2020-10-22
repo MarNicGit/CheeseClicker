@@ -63,7 +63,7 @@ export class ClickerBase {
     renderButton():string{
         this.hasRendered = true;
         let html = `
-        <div id="${this.elementName}" class="btn-clicker" data-type="${ClickerType[this.clickerType]}">
+        <div id="${this.elementName}" class="btn-clicker" data-type="${ClickerType[this.clickerType]}" disabled="false">
             ${this.renderInnerButton()}
         </div>
         `;
@@ -75,7 +75,7 @@ export class ClickerBase {
         let amountLbl = this.amount > 0 ? this.amount.toString() : '';
 
         return `
-        <div class="icon">
+        <div class="icon icon-${this.formalString}">
             <div class="label-amount">${amountLbl}</div>
         </div>
         <span class="label">${this.label}</span>

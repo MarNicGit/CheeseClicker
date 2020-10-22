@@ -69,9 +69,9 @@ export class GuiController{
             let element = document.getElementById(`${clicker.elementName}`);
             let clickerCost = clicker.getCost();
 
-            if (this.game.units >= clickerCost && element.getAttribute('disabled')) {
+            if (this.game.units >= clickerCost && element.getAttribute('disabled') == 'true') {
                 element.setAttribute('disabled', String(false));
-            } else if (this.game.units < clickerCost && !element.getAttribute('disabled')) {
+            } else if (this.game.units < clickerCost && element.getAttribute('disabled') == 'false') {
                 element.setAttribute('disabled', String(true));
             }
 
