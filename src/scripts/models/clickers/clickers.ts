@@ -1,6 +1,6 @@
 import { Game } from "../../game";
 import { ClickerType } from "./clickerType";
-import { ClickerBase } from "./_clickerBase";
+import { ClickerBase } from "./clickerBase";
 
 export class AutoClicker extends ClickerBase{
 
