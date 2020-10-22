@@ -4,7 +4,7 @@ module.exports = {
     entry: ['./src/scripts/main.ts', './src/style/site.scss'],
     devtool: 'source-map',
     output: {
-      filename: 'clicky.js',
+      filename: 'cheeseclicker.js',
       path: path.resolve(__dirname, 'dist'),
     },
     module: {
