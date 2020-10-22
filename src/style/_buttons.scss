@@ -57,7 +57,14 @@
             left: 1px;
             height: 64px;
             width: 64px;
-            border: 1px red solid;
+
+            $icons: "autoclicker","mouse","cow","mine","hedgefund";
+
+            @each $icon in $icons {
+                &-#{$icon}{
+                    background-image: url('../img/icon-#{$icon}.png');
+                }
+            }
         }
 
         .label{
