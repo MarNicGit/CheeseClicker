@@ -1,7 +1,7 @@
 import { Game } from "../../game";
 import { UpdateOperation } from "../../enums/updateOperation";
 import * as clickers from "./clickers";
-import { ClickerBase } from "./_clickerBase";
+import { ClickerBase } from "./clickerBase";
 import { ClickerType } from "./clickerType";
 
 export class ClickerCollection{

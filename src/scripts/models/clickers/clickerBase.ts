@@ -72,6 +72,13 @@ export class ClickerBase {
     }
 
     renderInnerButton():string{
-        return `<span class="btn-label">${this.label}</span><span class="btn-label-cost">🧀 ${this.getCost()}</span>`;
+        let amountLbl = this.amount > 0 ? this.amount.toString() : '';
+
+        return `
+        <div class="icon">
+            <div class="label-amount">${amountLbl}</div>
+        </div>
+        <span class="label">${this.label}</span>
+        <span class="label-cost">🧀 ${this.getCost()}</span>`;
     }
 }

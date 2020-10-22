@@ -48,6 +48,11 @@ module.exports = {
             flatten: true
           },
           {
+            from: 'src/assets/img/*.svg',
+            to: 'img/',
+            flatten: true
+          },
+          {
             from: 'src/index.html',
             to: 'index.html',
             flatten: true

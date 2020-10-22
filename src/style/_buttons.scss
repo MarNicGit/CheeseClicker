@@ -1,3 +1,5 @@
+@use 'vars' as *;
+
 .btn{
     $size: 20px;
 
@@ -24,6 +26,7 @@
     }
 
     &-clicker{
+        position: relative;
         height: 70px;
         width: 250px;
         background-color: #7d7071;
@@ -42,6 +45,43 @@
         &:active{
             background-color: #7d7071;
             border: 2px solid #5a5353;
+        }
+
+        &[disabled="true"]{
+            pointer-events: none;
+            filter: grayscale(80%);
+        }
+
+        .icon{
+            position: absolute;
+            left: 1px;
+            height: 64px;
+            width: 64px;
+            border: 1px red solid;
+        }
+
+        .label{
+            position: absolute;
+            right: 10px;
+            &-amount{
+                position: absolute;
+                right: 0.5ch;
+                bottom: 0;
+                text-align: right;
+                font-weight: bold;
+                font-size: 24px;
+                font-family: $font-rubik;
+                color: white;
+
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            }
+
+            &-cost{
+                font-size: 10px;
+                position: absolute;
+                right: 10px;
+                top: 0.5em;
+            }
         }
     }
 }
