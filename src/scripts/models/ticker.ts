@@ -3,7 +3,7 @@ export class Ticker{
     interval:number;
     constructor(fn: Function, interval: number){
         this.interval = interval;
-        this.ticker = setInterval(()=>{
+        this.ticker = window.setInterval(()=>{
             fn();
         }, this.interval);
     }

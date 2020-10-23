@@ -1,5 +1,7 @@
 const path = require('path');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = {
     entry: ['./src/scripts/main.ts', './src/style/site.scss'],
     devtool: 'source-map',
@@ -40,6 +42,7 @@ module.exports = {
       minimize: false
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new CopyWebpackPlugin({
         patterns: [
           {

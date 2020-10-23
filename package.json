@@ -1,5 +1,5 @@
 {
-  "name": "clicky",
+  "name": "cheese-clicker",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "bootstrap": "^5.0.0-alpha2",
+    "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.2.0",
     "sass-loader": "^10.0.2",
     "ts-loader": "^8.0.4",
@@ -27,13 +28,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarNicGit/Clicky.git"
+    "url": "git+https://github.com/MarNicGit/CheeseClicker.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MarNicGit/Clicky/issues"
+    "url": "https://github.com/MarNicGit/CheeseClicker/issues"
   },
-  "homepage": "https://github.com/MarNicGit/Clicky#readme"
+  "homepage": "https://github.com/MarNicGit/CheeseClicker#readme"
 }
