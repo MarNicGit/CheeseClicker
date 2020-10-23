@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "bootstrap": "^5.0.0-alpha2",
+    "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.2.0",
     "sass-loader": "^10.0.2",
     "ts-loader": "^8.0.4",
