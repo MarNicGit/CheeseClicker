@@ -37,7 +37,6 @@ export class Game {
     }
 
     click(){
-        console.log('gj you click');
         this.updateUnits(1);
     }
 
@@ -90,6 +89,4 @@ export class Game {
     selfDestruct(){
         this.baseMultiplier = -1; //negative multipliers make the game go poopoo lol
     }
-
-
 }
