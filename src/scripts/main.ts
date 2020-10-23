@@ -9,5 +9,3 @@ var game = new Game(saveController);
 var guiController = new GuiController(game);
 
 game.init();
-console.log('welcome to cheese clicky game pls enjoy');
-

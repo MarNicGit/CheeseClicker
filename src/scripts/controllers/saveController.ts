@@ -5,7 +5,7 @@ import { Ticker } from "../models/ticker";
 
 export class SaveController{
 
-    SAVEGAME_KEY = 'clicky_save';
+    SAVEGAME_KEY = 'cheeseclicker_save';
     storage: Storage;
     public autosaveTicker: Ticker;
 
@@ -63,7 +63,7 @@ export class SaveController{
      * Wipes the savefile
      *
      * TODO: super dollars or whatever for a permanent boost
-     * @param game Clicky game
+     * @param game Game instance
      */
     resetGame(game:Game){
         this.storage.removeItem(this.SAVEGAME_KEY);
