@@ -3,6 +3,7 @@ import { ClickerType } from "../models/clickers/clickerType";
 import { Ticker } from "../models/ticker";
 
 export class GuiController{
+
     guiTicker: Ticker;
 
     clickBtn: HTMLElement;
@@ -81,5 +82,9 @@ export class GuiController{
                 element.innerHTML = html;
             }
         });
+    }
+
+    resetButtonContainer() {
+        this.buttonContainer.innerHTML = '';
     }
 }

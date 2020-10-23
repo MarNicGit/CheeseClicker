@@ -2,20 +2,20 @@ import { SaveController } from "./controllers/saveController";
 import { ClickerCollection } from "./models/clickers/clickerCollection";
 import { UpdateOperation } from "./enums/updateOperation";
 import { ClickerType } from "./models/clickers/clickerType";
+import { GuiController } from "./controllers/guiController";
 
 export class Game {
     unitsRaw: number;
     clickers: ClickerCollection;
     clickMultiplier: number;
     baseMultiplier: number;
+    gui: GuiController;
 
     public get units() : number {
         return Math.round(this.unitsRaw);
     }
 
-
     //-important variables----------------------
-    AUTOCLICKER_MIN_UNITS = 10;
     UNIT = 'cheese';
 
     //-autoclicker multipliers------------------
@@ -32,10 +32,8 @@ export class Game {
 
         saveController.loadGame(this);
         saveController.initAutosave(this);
-    }
 
-    init(){
-        console.log('init');
+        this.gui = new GuiController(this);
     }
 
     click(){

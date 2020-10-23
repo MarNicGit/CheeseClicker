@@ -26,7 +26,7 @@ export class SaveController{
     loadGame(game:Game){
         let existingSave = this.storage.getItem(this.SAVEGAME_KEY);
 
-        if(existingSave == null || existingSave == 'undefined' || existingSave == String.Empty){ //empty string really shouldn't happen but oh well
+        if(existingSave == null || existingSave == 'undefined' || existingSave == ''){ //empty string really shouldn't happen but oh well
             console.log('No savegame found!');
             return;
         }
@@ -68,10 +68,7 @@ export class SaveController{
     resetGame(game:Game){
         this.storage.removeItem(this.SAVEGAME_KEY);
 
-        //kill off all tickers
-        game.clickers.listClickers().forEach(clicker => {
-            clicker.ticker.stop();
-        });
+        game.clickers.reset();
 
         game.clickers = new ClickerCollection(game);
 

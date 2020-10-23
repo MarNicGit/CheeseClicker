@@ -6,13 +6,25 @@ import { ClickerType } from "./clickerType";
 
 export class ClickerCollection{
 
+    public activeClickers: Array<ClickerType>;
     autoClicker: clickers.AutoClicker;
     mouseClicker: clickers.MouseClicker;
     cowClicker: clickers.CowClicker;
     mineClicker: clickers.MineClicker;
     hedgefundClicker: clickers.HedgefundClicker;
 
-    public activeClickers: Array<ClickerType>;
+    constructor(public game: Game) {
+        this.init();
+    }
+
+    init(){
+        this.autoClicker = new clickers.AutoClicker(this.game);
+        this.mouseClicker = new clickers.MouseClicker(this.game);
+        this.cowClicker = new clickers.CowClicker(this.game);
+        this.mineClicker = new clickers.MineClicker(this.game);
+        this.hedgefundClicker = new clickers.HedgefundClicker(this.game);
+    }
+
 
     addClicker(type:ClickerType) {
         let clicker = this.getClicker(type);
@@ -50,11 +62,14 @@ export class ClickerCollection{
         clicker.amount += 1;
     }
 
-    constructor(public game: Game) {
-        this.autoClicker = new clickers.AutoClicker(game);
-        this.mouseClicker = new clickers.MouseClicker(game);
-        this.cowClicker = new clickers.CowClicker(game);
-        this.mineClicker = new clickers.MineClicker(game);
-        this.hedgefundClicker = new clickers.HedgefundClicker(game);
+    public reset(){
+        //kill off all tickers
+        this.listClickers().forEach(clicker => {
+            clicker.ticker.stop();
+        });
+
+        this.game.gui.resetButtonContainer();
+
+        this.init(); //reset the clickers
     }
 }
