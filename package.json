@@ -1,5 +1,5 @@
 {
-  "name": "clicky",
+  "name": "cheese-clicker",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -28,13 +28,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarNicGit/Clicky.git"
+    "url": "git+https://github.com/MarNicGit/CheeseClicker.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MarNicGit/Clicky/issues"
+    "url": "https://github.com/MarNicGit/CheeseClicker/issues"
   },
-  "homepage": "https://github.com/MarNicGit/Clicky#readme"
+  "homepage": "https://github.com/MarNicGit/CheeseClicker#readme"
 }
