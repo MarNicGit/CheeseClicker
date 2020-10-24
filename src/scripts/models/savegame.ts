@@ -12,6 +12,5 @@ export class Savegame{
             this.clickerCollection[ClickerType[clicker.clickerType]] = {};
             this.clickerCollection[ClickerType[clicker.clickerType]]['amount'] = clicker.amount; //yo this is dirty as fuck
         });
-        console.log(this.clickerCollection);
     }
 }

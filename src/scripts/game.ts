@@ -9,7 +9,8 @@ export class Game {
     clickers: ClickerCollection;
     clickMultiplier: number;
     baseMultiplier: number;
-    gui: GuiController;
+    public gui: GuiController;
+    public saveController: SaveController;
 
     public get units() : number {
         return Math.round(this.unitsRaw);
@@ -21,17 +22,16 @@ export class Game {
     //-autoclicker multipliers------------------
     multi_autoClicker: Number;
 
-    constructor(
-        public saveController:SaveController
-        ){
+    constructor(){
         this.unitsRaw = 0;
         this.baseMultiplier = 1;
         this.clickMultiplier = 1;
 
         this.clickers = new ClickerCollection(this);
+        this.saveController = new SaveController();
 
-        saveController.loadGame(this);
-        saveController.initAutosave(this);
+        this.saveController.loadGame(this);
+        this.saveController.initAutosave(this);
 
         this.gui = new GuiController(this);
     }
