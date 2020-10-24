@@ -34,11 +34,9 @@ export class ClickerBase {
 
     constructor(public game: Game) {
         this.amount = 0;
-        // this.element = game.
     }
 
     init() {
-        console.log(`interval is ${this.baseInterval}`);
         this.ticker = new Ticker(() => {
             this.updateClicker();
         }, this.baseInterval);
