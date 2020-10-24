@@ -5,8 +5,6 @@ import { ClickerBase } from "./clickerBase";
 import { ClickerType } from "./clickerType";
 
 export class ClickerCollection{
-
-    public activeClickers: Array<ClickerType>;
     autoClicker: clickers.AutoClicker;
     mouseClicker: clickers.MouseClicker;
     cowClicker: clickers.CowClicker;
@@ -25,6 +23,15 @@ export class ClickerCollection{
         this.hedgefundClicker = new clickers.HedgefundClicker(this.game);
     }
 
+    updateState() {
+        let increment = 0;
+
+        this.listClickers().forEach(clicker => {
+            increment += clicker.getIncrement();
+        });
+
+        this.game.updateUnits(increment);
+    }
 
     addClicker(type:ClickerType) {
         let clicker = this.getClicker(type);
@@ -63,11 +70,6 @@ export class ClickerCollection{
     }
 
     public reset(){
-        //kill off all tickers
-        this.listClickers().forEach(clicker => {
-            clicker.ticker.stop();
-        });
-
         this.game.gui.resetButtonContainer();
 
         this.init(); //reset the clickers

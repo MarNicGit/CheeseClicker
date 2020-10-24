@@ -3,12 +3,20 @@ import { ClickerCollection } from "./models/clickers/clickerCollection";
 import { UpdateOperation } from "./enums/updateOperation";
 import { ClickerType } from "./models/clickers/clickerType";
 import { GuiController } from "./controllers/guiController";
+import { Ticker } from "./models/ticker";
 
 export class Game {
     unitsRaw: number;
     clickers: ClickerCollection;
     clickMultiplier: number;
     baseMultiplier: number;
+
+    /**
+     * Ticker that steers all game logic + gui
+     */
+    public gameTicker: Ticker;
+    public TICKER_INTERVAL = 50; //ms
+
     public gui: GuiController;
     public saveController: SaveController;
 
@@ -34,6 +42,14 @@ export class Game {
         this.saveController.initAutosave(this);
 
         this.gui = new GuiController(this);
+        this.initTicker();
+    }
+
+    initTicker(){
+        this.gameTicker = new Ticker(()=>{
+            this.gui.updateState();
+            this.clickers.updateState();
+        }, this.TICKER_INTERVAL);
     }
 
     click(){

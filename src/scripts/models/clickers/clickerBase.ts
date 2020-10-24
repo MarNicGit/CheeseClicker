@@ -7,15 +7,12 @@ export class ClickerBase {
     amount: number;
     formalString: string;
     label: string;
-    baseInterval = 1000; //TODO: Make this listen to FPS instead
     baseIncrement: number;
     baseCost: number;
     costGrowthFactor: number;
     multiplier: number;
-    ticker: Ticker;
     clickerType: ClickerType;
     hasRendered: boolean = false;
-    // element: JQuery<HTMLElement>;
 
     public get isActive(): boolean {
         return this.amount > 0;
@@ -34,20 +31,18 @@ export class ClickerBase {
 
     constructor(public game: Game) {
         this.amount = 0;
+        this.costGrowthFactor = 1.2;
+        this.multiplier = 1;
     }
 
-    init() {
-        this.ticker = new Ticker(() => {
-            this.updateClicker();
-        }, this.baseInterval);
-    }
+    getIncrement() {
+        if (this.amount < 1) return 0;
 
-    updateClicker() {
-        if (this.amount < 1) return;
+        let increment = this.baseIncrement * this.amount * this.multiplier;
 
-        let increment = this.baseIncrement * this.amount;
+        let perTick = this.game.TICKER_INTERVAL / 1000; //per 1 second
 
-        this.game.updateUnits(increment);
+        return increment * perTick;
     }
 
     getCost() {
