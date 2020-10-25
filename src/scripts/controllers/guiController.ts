@@ -43,12 +43,6 @@ export class GuiController{
         },false);
     }
 
-    // initTicker(){
-    //     this.guiTicker = new Ticker(()=>{
-    //         this.updateState();
-    //     }, 100); //update the game state every 100ms
-    // }
-
     updateState(){
         let prevUnitValue = this.counterLbl.innerText;
         let units = this.game.units.toString();
