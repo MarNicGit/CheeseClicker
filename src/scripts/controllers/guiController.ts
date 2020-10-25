@@ -11,6 +11,7 @@ export class GuiController{
     saveBtn: HTMLElement;
     resetSaveBtn: HTMLElement;
     buttonContainer: HTMLElement;
+    secLbl: HTMLElement;
 
     constructor(public game:Game){
         this.setElements();
@@ -22,6 +23,7 @@ export class GuiController{
         this.clickBtn = document.getElementById('cheese');
         this.saveBtn = document.getElementById('saveBtn');
         this.counterLbl = document.getElementById('counterLbl');
+        this.secLbl = document.getElementById('secLbl');
         this.resetSaveBtn = document.getElementById('resetSaveBtn');
         this.buttonContainer = document.getElementById('upgradeContainer');
     }
@@ -51,6 +53,18 @@ export class GuiController{
         }
 
         this.updateButtons();
+        this.updateCheesePerSecLabel();
+    }
+
+    updateCheesePerSecLabel() {
+        let cheesePerSec = this.game.clickers.getIncrement() * (1000 / this.game.TICKER_INTERVAL);
+        let element = this.secLbl;
+
+        let label = `${cheesePerSec.toString()} per sec`;
+
+        if(element.innerHTML != label){
+            element.innerHTML = label;
+        }
     }
 
     updateButtons() {
