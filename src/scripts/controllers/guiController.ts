@@ -15,7 +15,7 @@ export class GuiController{
     constructor(public game:Game){
         this.setElements();
         this.registerListeners();
-        this.initTicker();
+        // this.initTicker();
     }
 
     setElements(){
@@ -41,12 +41,6 @@ export class GuiController{
                 this.game.buyClicker(ClickerType[type]);
             }
         },false);
-    }
-
-    initTicker(){
-        this.guiTicker = new Ticker(()=>{
-            this.updateState();
-        }, 100); //update the game state every 100ms
     }
 
     updateState(){
