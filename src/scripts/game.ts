@@ -4,12 +4,14 @@ import { UpdateOperation } from "./enums/updateOperation";
 import { ClickerType } from "./models/clickers/clickerType";
 import { GuiController } from "./controllers/guiController";
 import { Ticker } from "./models/ticker";
+import { Stat } from "./models/stat";
 
 export class Game {
     unitsRaw: number;
     clickers: ClickerCollection;
     clickMultiplier: number;
     baseMultiplier: number;
+    clickStat: Stat;
 
     /**
      * Ticker that steers all game logic + gui
@@ -34,6 +36,7 @@ export class Game {
         this.unitsRaw = 0;
         this.baseMultiplier = 1;
         this.clickMultiplier = 1;
+        this.clickStat = new Stat();
 
         this.clickers = new ClickerCollection(this);
         this.saveController = new SaveController();
@@ -53,7 +56,9 @@ export class Game {
     }
 
     click(){
-        this.updateUnits(1);
+        let amount = 1;
+        this.updateUnits(amount);
+        this.clickStat.update(amount);
     }
 
     /**
@@ -62,7 +67,7 @@ export class Game {
      * @param operation Add or subtract, defaults to add
      */
     updateUnits(amount:number, operation:UpdateOperation = UpdateOperation.Add){
-        let sum = (amount * this.clickMultiplier * this.baseMultiplier);
+        let sum = (amount * this.baseMultiplier);
 
         switch (operation) {
             case UpdateOperation.Add:
