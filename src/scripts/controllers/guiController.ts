@@ -1,6 +1,7 @@
 import { Game } from "../game";
 import { ClickerType } from "../models/clickers/clickerType";
 import { Ticker } from "../models/ticker";
+import "../lib/numberExtensions";
 
 export class GuiController{
 
@@ -47,9 +48,9 @@ export class GuiController{
 
     updateState(){
         let prevUnitValue = this.counterLbl.innerText;
-        let units = this.game.units.toString();
-        if(prevUnitValue != units){
-            this.counterLbl.innerText = units;
+        let units = this.game.units;
+        if(prevUnitValue != units.toPretty()){
+            this.counterLbl.innerText = units.toPretty();
         }
 
         this.updateButtons();
@@ -59,8 +60,10 @@ export class GuiController{
     updateCheesePerSecLabel() {
         let cheesePerSec = this.game.clickers.getIncrement() * (1000 / this.game.TICKER_INTERVAL);
         let element = this.secLbl;
+        let lbl = cheesePerSec.toCommafied();
+        //if(lbl.endsWith('.0')) lbl = lbl.replace('.0','');
 
-        let label = `${cheesePerSec.toString()} per sec`;
+        let label = `${lbl} per sec`;
 
         if(element.innerHTML != label){
             element.innerHTML = label;
