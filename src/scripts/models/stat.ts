@@ -1,5 +1,5 @@
 export class Stat{
-    public cheeseGenerated : number;
+    public cheeseGenerated : number = 0;
 
     constructor(){
 
