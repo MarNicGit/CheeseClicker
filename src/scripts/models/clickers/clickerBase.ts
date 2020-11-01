@@ -1,5 +1,5 @@
 import { Game } from "../../game";
-import { Ticker } from "../ticker";
+import { Stat } from "../stat";
 import { ClickerType } from "./clickerType";
 
 export class ClickerBase {
@@ -13,6 +13,7 @@ export class ClickerBase {
     multiplier: number;
     clickerType: ClickerType;
     hasRendered: boolean = false;
+    stat: Stat;
 
     public get isActive(): boolean {
         return this.amount > 0;
@@ -33,6 +34,7 @@ export class ClickerBase {
         this.amount = 0;
         this.costGrowthFactor = 1.2;
         this.multiplier = 1;
+        this.stat = new Stat();
     }
 
     getIncrement() {

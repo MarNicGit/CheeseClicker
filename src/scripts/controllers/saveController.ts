@@ -40,7 +40,9 @@ export class SaveController{
                 if (Object.prototype.hasOwnProperty.call(loadedSave.clickerCollection, key)) {
                     const element = loadedSave.clickerCollection[key];
                     key = key.charAt(0).toLowerCase() + key.slice(1);
-                    (game.clickers as any)[key].amount = element.amount; //TODO get rid of 'any' filth
+                    let clicker = (game.clickers as any)[key];
+                    clicker.amount = element.amount; //TODO get rid of 'any' filth
+                    clicker.stat.cheeseGenerated = element.cheeseGenerated ?? 0;
                 }
             }
 

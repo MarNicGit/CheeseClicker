@@ -24,13 +24,15 @@ export class ClickerCollection{
     }
 
     updateState() {
-        this.game.updateUnits(this.getIncrement());
+        this.game.updateUnits(this.getIncrement(true));
     }
 
-    public getIncrement() {
+    public getIncrement(updateStat = false) {
         let increment = 0;
         this.listClickers().forEach(clicker => {
-            increment += clicker.getIncrement();
+            let increaseBy = clicker.getIncrement();
+            increment += increaseBy;
+            if(updateStat) clicker.stat.update(increaseBy);
         });
         return increment;
     }
