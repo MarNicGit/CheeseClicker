@@ -15,7 +15,7 @@ export class ToastController{
             <div class="icon"></div>
             <div class="title">${model.title}</div>
             <div class="subTitle">${model.subTitle}</div>
-            <div class="closeBtn">X</div>
+            <div class="closeBtn"></div>
         `;
 
         this.container.prepend(element);

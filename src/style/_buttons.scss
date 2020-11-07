@@ -27,10 +27,10 @@
 
     &-clicker{
         position: relative;
-        height: 70px;
-        width: 250px;
+        height: 72px;
+        width: 192px;
         background-color: #7d7071;
-        border: 2px solid #5a5353;
+        background-image: url('../img/btn-bg.svg');
         cursor: pointer;
         user-select: none;
         text-align: center;
@@ -39,17 +39,18 @@
         justify-content: center;
         &:hover{
             background-color: #a0938e;
-            border: 2px solid #7d7071;
+            background-image: url('../img/btn-bg-hover.svg');
         }
 
         &:active{
             background-color: #7d7071;
-            border: 2px solid #5a5353;
+            background-image: url('../img/btn-bg.svg');
         }
 
         &[disabled="true"]{
             pointer-events: none;
             filter: grayscale(80%);
+            background-image: url('../img/btn-bg-off.svg');
         }
 
         .icon{
@@ -62,7 +63,7 @@
 
             @each $icon in $icons {
                 &-#{$icon}{
-                    background-image: url('../img/icon-#{$icon}.png');
+                    background-image: url('../img/icon-#{$icon}.svg');
                 }
             }
         }
