@@ -5,6 +5,7 @@ import { ClickerType } from "./models/clickers/clickerType";
 import { GuiController } from "./controllers/guiController";
 import { Ticker } from "./models/ticker";
 import { Stat } from "./models/stat";
+import { ToastController } from "./controllers/toastController";
 
 export class Game {
     unitsRaw: number;
@@ -21,6 +22,7 @@ export class Game {
 
     public gui: GuiController;
     public saveController: SaveController;
+    public toastController: ToastController;
 
     public get units() : number {
         return Math.round(this.unitsRaw);
@@ -39,12 +41,13 @@ export class Game {
         this.clickStat = new Stat();
 
         this.clickers = new ClickerCollection(this);
-        this.saveController = new SaveController();
+        this.saveController = new SaveController(this);
 
-        this.saveController.loadGame(this);
-        this.saveController.initAutosave(this);
+        this.saveController.loadGame();
+        this.saveController.initAutosave();
 
         this.gui = new GuiController(this);
+        this.toastController = new ToastController();
         this.initTicker();
     }
 

@@ -31,8 +31,8 @@ export class GuiController{
 
     registerListeners() {
         this.clickBtn.addEventListener('click', () => this.game.click());
-        this.saveBtn.addEventListener('click', () => this.game.saveController.saveGame(this.game));
-        this.resetSaveBtn.addEventListener('click', () => this.game.saveController.resetGame(this.game));
+        this.saveBtn.addEventListener('click', () => this.game.saveController.saveGame());
+        this.resetSaveBtn.addEventListener('click', () => this.game.saveController.resetGame());
 
         this.buttonContainer.addEventListener('click', (e: Event) => {
             if(e.target == this.buttonContainer) return;
