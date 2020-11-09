@@ -1,0 +1,56 @@
+#toasterContainer{
+    position: fixed;
+    bottom: 0;
+    left: 10px;
+
+    .toast{
+        position: relative;
+        color: #cfc6b8;
+        padding: 4px;
+        width: 200px;
+        height: 50px;
+        background-image: url('../img/toast-bg.svg');
+        margin-bottom: 5px;
+        animation: fade-in-bottom 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) both;
+        &.fade-out{
+            animation: fade-out-bottom 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) both;
+        }
+
+        .closeBtn{
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            width:16px;
+            height:16px;
+            background-image: url('../img/x.svg');
+            transition: ease-in-out;
+
+            &:hover{
+                filter: brightness(1.5);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+@keyframes fade-in-bottom {
+    0% {
+        margin-bottom: -50px;
+        opacity: 0;
+    }
+    100% {
+        margin-bottom: 5px;
+        opacity: 1;
+    }
+}
+@keyframes fade-out-bottom {
+    0% {
+        margin-bottom: 5px;
+        opacity: 1;
+    }
+    100% {
+        margin-bottom: -50px;
+        opacity: 0;
+    }
+}

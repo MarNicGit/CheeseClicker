@@ -2,6 +2,7 @@ import { Game } from "../game";
 import { ClickerType } from "../models/clickers/clickerType";
 import { Ticker } from "../models/ticker";
 import "../lib/numberExtensions";
+import { ModalController } from "./modalController";
 
 export class GuiController{
 
@@ -13,10 +14,15 @@ export class GuiController{
     resetSaveBtn: HTMLElement;
     buttonContainer: HTMLElement;
     secLbl: HTMLElement;
+    spawnModalBtn: HTMLElement;
+
+    modalController: ModalController;
 
     constructor(public game:Game){
         this.setElements();
         this.registerListeners();
+
+        this.modalController = new ModalController(game);
         // this.initTicker();
     }
 
@@ -27,12 +33,13 @@ export class GuiController{
         this.secLbl = document.getElementById('secLbl');
         this.resetSaveBtn = document.getElementById('resetSaveBtn');
         this.buttonContainer = document.getElementById('upgradeContainer');
+        this.spawnModalBtn = document.getElementById('spawnModal');
     }
 
     registerListeners() {
         this.clickBtn.addEventListener('click', () => this.game.click());
-        this.saveBtn.addEventListener('click', () => this.game.saveController.saveGame(this.game));
-        this.resetSaveBtn.addEventListener('click', () => this.game.saveController.resetGame(this.game));
+        this.saveBtn.addEventListener('click', () => this.game.saveController.saveGame());
+        this.resetSaveBtn.addEventListener('click', () => this.game.saveController.resetGame());
 
         this.buttonContainer.addEventListener('click', (e: Event) => {
             if(e.target == this.buttonContainer) return;
@@ -44,6 +51,8 @@ export class GuiController{
                 this.game.buyClicker(ClickerType[type]);
             }
         },false);
+
+        // this.spawnModalBtn.addEventListener('click', ()=> this.modalController.renderOptionsModal());
     }
 
     updateState(){
