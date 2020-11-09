@@ -2,6 +2,7 @@ import { Game } from "../game";
 import { ClickerType } from "../models/clickers/clickerType";
 import { Ticker } from "../models/ticker";
 import "../lib/numberExtensions";
+import { ModalController } from "./modalController";
 
 export class GuiController{
 
@@ -13,10 +14,15 @@ export class GuiController{
     resetSaveBtn: HTMLElement;
     buttonContainer: HTMLElement;
     secLbl: HTMLElement;
+    spawnModalBtn: HTMLElement;
+
+    modalController: ModalController;
 
     constructor(public game:Game){
         this.setElements();
         this.registerListeners();
+
+        this.modalController = new ModalController(game);
         // this.initTicker();
     }
 
@@ -27,6 +33,7 @@ export class GuiController{
         this.secLbl = document.getElementById('secLbl');
         this.resetSaveBtn = document.getElementById('resetSaveBtn');
         this.buttonContainer = document.getElementById('upgradeContainer');
+        this.spawnModalBtn = document.getElementById('spawnModal');
     }
 
     registerListeners() {
@@ -44,6 +51,8 @@ export class GuiController{
                 this.game.buyClicker(ClickerType[type]);
             }
         },false);
+
+        // this.spawnModalBtn.addEventListener('click', ()=> this.modalController.renderOptionsModal());
     }
 
     updateState(){
