@@ -30,7 +30,7 @@
         height: 72px;
         width: 192px;
         background-color: #7d7071;
-        background-image: url('../img/btn-bg.svg');
+        background-image: url('../img/btn-bg.png');
         cursor: pointer;
         user-select: none;
         text-align: center;
@@ -39,18 +39,18 @@
         justify-content: center;
         &:hover{
             background-color: #a0938e;
-            background-image: url('../img/btn-bg-hover.svg');
+            background-image: url('../img/btn-bg-hover.png');
         }
 
         &:active{
             background-color: #7d7071;
-            background-image: url('../img/btn-bg.svg');
+            background-image: url('../img/btn-bg.png');
         }
 
         &[disabled="true"]{
             pointer-events: none;
             filter: grayscale(80%);
-            background-image: url('../img/btn-bg-off.svg');
+            background-image: url('../img/btn-bg-off.png');
         }
 
         .icon{
@@ -63,7 +63,7 @@
 
             @each $icon in $icons {
                 &-#{$icon}{
-                    background-image: url('../img/icon-#{$icon}.svg');
+                    background-image: url('../img/icon-#{$icon}.png');
                 }
             }
         }

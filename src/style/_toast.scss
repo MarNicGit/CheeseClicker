@@ -9,7 +9,7 @@
         padding: 4px;
         width: 200px;
         height: 50px;
-        background-image: url('../img/toast-bg.svg');
+        background-image: url('../img/toast-bg.png');
         margin-bottom: 5px;
         animation: fade-in-bottom 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) both;
         &.fade-out{
@@ -22,7 +22,7 @@
             top: 4px;
             width:16px;
             height:16px;
-            background-image: url('../img/x.svg');
+            background-image: url('../img/x.png');
             transition: ease-in-out;
 
             &:hover{
