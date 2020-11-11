@@ -34,6 +34,8 @@ export class SaveController{
             loadedSave = JSON.parse(existingSave);
 
             this.game.unitsRaw = loadedSave.unitsRaw;
+            this.game.options = loadedSave.options;
+            this.game.startedSessionAt = loadedSave.startedSessionAt;
 
             for (let key in loadedSave.clickerCollection) {
                 if (Object.prototype.hasOwnProperty.call(loadedSave.clickerCollection, key)) {

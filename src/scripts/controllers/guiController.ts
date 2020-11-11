@@ -17,6 +17,7 @@ export class GuiController{
     spawnModalBtn: HTMLElement;
 
     modalController: ModalController;
+    optionsBtn: HTMLElement;
 
     constructor(public game:Game){
         this.setElements();
@@ -33,13 +34,14 @@ export class GuiController{
         this.secLbl = document.getElementById('secLbl');
         this.resetSaveBtn = document.getElementById('resetSaveBtn');
         this.buttonContainer = document.getElementById('upgradeContainer');
-        this.spawnModalBtn = document.getElementById('spawnModal');
+        this.optionsBtn = document.getElementById('optionsBtn');
     }
 
     registerListeners() {
         this.clickBtn.addEventListener('click', () => this.game.click());
         this.saveBtn.addEventListener('click', () => this.game.saveController.saveGame());
         this.resetSaveBtn.addEventListener('click', () => this.game.saveController.resetGame());
+        this.optionsBtn.addEventListener('click', ()=> this.modalController.renderOptionsModal());
 
         this.buttonContainer.addEventListener('click', (e: Event) => {
             if(e.target == this.buttonContainer) return;

@@ -1,11 +1,11 @@
 @use 'vars' as *;
 
 .btn{
-    $size: 20px;
+    $size: 40px;
 
     height: $size;
     width: $size;
-    padding:2px;
+    padding:0px;
     background-image: url('../img/icon-btn.png');
     border: none;
 
@@ -17,11 +17,18 @@
         background-image: url('../img/icon-btn-active.png');
     }
 
-    .icon{
-        $iconSize: 16px;
+    &:hover{
+        .icon{
+            filter: brightness(1.2);
+        }
+    }
 
-        height: $iconSize;
-        width: $iconSize;
+    .icon{
+        $iconSize: 32px;
+
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
         background-position: center;
     }
 
@@ -91,6 +98,12 @@
                 top: 0.5em;
             }
         }
+    }
+}
+
+#optionsBtn{
+    .icon{
+        background-image: url('../img/icon-gear.png')
     }
 }
 

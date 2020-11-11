@@ -6,6 +6,7 @@ import { GuiController } from "./controllers/guiController";
 import { Ticker } from "./models/ticker";
 import { Stat } from "./models/stat";
 import { ToastController } from "./controllers/toastController";
+import { Options } from "./models/options";
 
 export class Game {
     unitsRaw: number;
@@ -13,6 +14,8 @@ export class Game {
     clickMultiplier: number;
     baseMultiplier: number;
     clickStat: Stat;
+    options: Options;
+    startedSessionAt: Number;
 
     /**
      * Ticker that steers all game logic + gui
@@ -39,6 +42,8 @@ export class Game {
         this.baseMultiplier = 1;
         this.clickMultiplier = 1;
         this.clickStat = new Stat();
+        this.options = new Options();
+        this.startedSessionAt = Date.now();
 
         this.clickers = new ClickerCollection(this);
         this.saveController = new SaveController(this);
