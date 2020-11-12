@@ -61,7 +61,7 @@ export class GuiController{
         let prevUnitValue = this.counterLbl.innerText;
         let units = this.game.units;
         if(prevUnitValue != units.toPretty()){
-            this.counterLbl.innerText = units.toPretty(true);
+            this.counterLbl.innerText = units.toPretty(this.game.options.useShortLabels);
         }
 
         this.updateButtons();
@@ -71,7 +71,7 @@ export class GuiController{
     updateCheesePerSecLabel() {
         let cheesePerSec = this.game.clickers.getIncrement() * (1000 / this.game.TICKER_INTERVAL);
         let element = this.secLbl;
-        let lbl = cheesePerSec.toPretty(true);
+        let lbl = cheesePerSec.toPretty(this.game.options.useShortLabels);
         //if(lbl.endsWith('.0')) lbl = lbl.replace('.0','');
 
         let label = `${lbl} per sec`;

@@ -12,6 +12,9 @@
     border: 10px solid transparent;
     border-image: url('../img/border.png') 30% round;
 
+    display: flex;
+    flex-direction: column;
+
     .modalCloseBtn{
         position: absolute;
         right: 4px;
@@ -26,6 +29,32 @@
         &:hover{
             filter: brightness(1.5);
             cursor: pointer;
+        }
+    }
+
+    .modalTitle{
+        font-size: 2em;
+    }
+
+    .modalBody{
+        margin-top: 1em;
+        height: 100%;
+
+        .boolBtn{
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+            padding: 5px;
+            border-radius: .5em;
+            border: 2px solid $color-darkgreen;
+            background-color: $color-dark;
+
+            &.disabled{
+                color: $color-darkgray;
+                border: 2px solid $color-black;
+            }
+
+            color: $color-green;
         }
     }
   }
