@@ -11,7 +11,7 @@ export class GuiController{
     clickBtn: HTMLElement;
     counterLbl: HTMLElement;
     saveBtn: HTMLElement;
-    resetSaveBtn: HTMLElement;
+    // resetSaveBtn: HTMLElement;
     buttonContainer: HTMLElement;
     secLbl: HTMLElement;
     spawnModalBtn: HTMLElement;
@@ -24,7 +24,6 @@ export class GuiController{
         this.registerListeners();
 
         this.modalController = new ModalController(game);
-        // this.initTicker();
     }
 
     setElements(){
@@ -32,7 +31,6 @@ export class GuiController{
         this.saveBtn = document.getElementById('saveBtn');
         this.counterLbl = document.getElementById('counterLbl');
         this.secLbl = document.getElementById('secLbl');
-        this.resetSaveBtn = document.getElementById('resetSaveBtn');
         this.buttonContainer = document.getElementById('upgradeContainer');
         this.optionsBtn = document.getElementById('optionsBtn');
     }
@@ -40,7 +38,6 @@ export class GuiController{
     registerListeners() {
         this.clickBtn.addEventListener('click', () => this.game.click());
         this.saveBtn.addEventListener('click', () => this.game.saveController.saveGame());
-        this.resetSaveBtn.addEventListener('click', () => this.game.saveController.resetGame());
         this.optionsBtn.addEventListener('click', ()=> this.modalController.renderOptionsModal());
 
         this.buttonContainer.addEventListener('click', (e: Event) => {
@@ -53,8 +50,6 @@ export class GuiController{
                 this.game.buyClicker(ClickerType[type]);
             }
         },false);
-
-        // this.spawnModalBtn.addEventListener('click', ()=> this.modalController.renderOptionsModal());
     }
 
     updateState(){
@@ -72,7 +67,6 @@ export class GuiController{
         let cheesePerSec = this.game.clickers.getIncrement() * (1000 / this.game.TICKER_INTERVAL);
         let element = this.secLbl;
         let lbl = cheesePerSec.toPretty(this.game.options.useShortLabels);
-        //if(lbl.endsWith('.0')) lbl = lbl.replace('.0','');
 
         let label = `${lbl} per sec`;
 

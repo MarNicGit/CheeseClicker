@@ -23,6 +23,17 @@ export class ModalController {
             return this.game.options.useShortLabels = !this.game.options.useShortLabels;
         }));
 
+        let footer = document.createElement('div');
+        footer.id = 'modalFooter';
+
+        let resetBtn = document.createElement('button');
+        resetBtn.id = 'resetSaveBtn';
+
+        resetBtn.innerHTML = '<div class="icon"></div>';
+        resetBtn.classList.add('btn','btn-icon');
+        resetBtn.addEventListener('click', () => this.resetBtnOnClick());
+        footer.append(resetBtn);
+
         element.innerHTML = `
             <div class="modalTitle">Options</div>
             <div class="modalCloseBtn"></div>
@@ -30,8 +41,16 @@ export class ModalController {
 
         element.querySelector('.modalCloseBtn').addEventListener('click', (e)=>this.closeModal(e));
         element.append(body);
+        element.append(footer);
         document.getElementById('main').appendChild(element);
 
+    }
+
+    resetBtnOnClick(): void {
+        if(confirm('This will reset your savegame. Are you sure?')){
+            this.game.saveController.resetGame();
+            document.getElementById('optionsModal').remove();
+        }
     }
 
     closeModal(e:Event){

@@ -80,6 +80,8 @@ export class SaveController{
         this.game.unitsRaw = 0;
         this.game.baseMultiplier = 1;
 
+        this.game.startedSessionAt = Date.now();
+
         console.log(`Savegame wiped!`);
     }
 }
