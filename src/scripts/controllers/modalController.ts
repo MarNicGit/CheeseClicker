@@ -22,6 +22,9 @@ export class ModalController {
         body.append(this.renderBoolBtn('Use short labels', this.game.options.useShortLabels, ()=>{
             return this.game.options.useShortLabels = !this.game.options.useShortLabels;
         }));
+        body.append(this.renderBoolBtn('Enable autosave', this.game.options.autosave, ()=>{
+            return this.game.options.autosave = !this.game.options.autosave;
+        }));
 
         let footer = document.createElement('div');
         footer.id = 'modalFooter';

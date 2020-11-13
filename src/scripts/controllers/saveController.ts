@@ -19,7 +19,11 @@ export class SaveController{
      * @param game Game instance
      */
     initAutosave(){
-        this.autosaveTicker = new Ticker(()=>{this.saveGame(this.game);}, 5*60*1000); //5 minutes
+        this.autosaveTicker = new Ticker(()=>{
+            if(this.game.options.autosave){
+                this.saveGame(this.game);
+            }
+        }, 5*60*1000); //5 minutes
     }
 
     loadGame(){

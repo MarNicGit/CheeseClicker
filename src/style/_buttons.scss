@@ -9,6 +9,11 @@
     background-image: url('../img/icon-btn.png');
     background-color: transparent;
     border: none;
+    user-select: none;
+
+    &:focus{
+        outline: none;
+    }
 
     &:hover{
         background-image: url('../img/icon-btn-hover.png');

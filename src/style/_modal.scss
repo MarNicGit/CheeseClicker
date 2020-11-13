@@ -43,11 +43,14 @@
         .boolBtn{
             cursor: pointer;
             user-select: none;
-            display: inline-block;
+            display: block;
             padding: 5px;
             border-radius: .5em;
             border: 2px solid $color-darkgreen;
             background-color: $color-dark;
+            float: left;
+            clear: both;
+            margin-bottom: 5px;
 
             &.disabled{
                 color: $color-darkgray;
