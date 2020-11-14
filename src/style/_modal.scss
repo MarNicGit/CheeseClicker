@@ -46,14 +46,14 @@
             display: block;
             padding: 5px;
             border-radius: .5em;
-            border: 2px solid $color-darkgreen;
-            background-color: $color-dark;
+            border: 2px solid $color-green-dark;
+            background-color: $color-gray-steel;
             float: left;
             clear: both;
             margin-bottom: 5px;
 
             &.disabled{
-                color: $color-darkgray;
+                color: $color-gray-dark;
                 border: 2px solid $color-black;
             }
 

@@ -6,9 +6,12 @@
     height: $size;
     width: $size;
     padding:0px;
-    background-image: url('../img/icon-btn.png');
-    background-color: transparent;
-    border: none;
+
+    background-color: $color-gray;
+    background-clip: content-box;
+    border: 3px solid transparent;
+    border-image: url('../img/icon-btn.png') 35% round;
+
     user-select: none;
 
     &:focus{
@@ -16,11 +19,12 @@
     }
 
     &:hover{
-        background-image: url('../img/icon-btn-hover.png');
+        background-color: $color-gray-light;
+        border-image: url('../img/icon-btn-hover.png') 35% round;
     }
 
     &:active{
-        background-image: url('../img/icon-btn-active.png');
+        border-image: url('../img/icon-btn-active.png') 35% round;
     }
 
     &:hover{
@@ -42,8 +46,12 @@
         position: relative;
         height: 72px;
         width: 192px;
-        background-color: #7d7071;
-        background-image: url('../img/btn-bg.png');
+
+    background-color: $color-gray;
+    background-clip: content-box;
+    border: 3px solid transparent;
+    border-image: url('../img/icon-btn.png') 35% round;
+
         cursor: pointer;
         user-select: none;
         text-align: center;
@@ -51,19 +59,19 @@
         align-items: center;
         justify-content: center;
         &:hover{
-            background-color: #a0938e;
-            background-image: url('../img/btn-bg-hover.png');
+            background-color: $color-gray-light;
+            border-image: url('../img/icon-btn-hover.png') 35% round;
         }
 
         &:active{
-            background-color: #7d7071;
-            background-image: url('../img/btn-bg.png');
+            background-color: $color-gray;
+            border-image: url('../img/icon-btn-active.png') 35% round;
         }
 
         &[disabled="true"]{
             pointer-events: none;
+            background-color: $color-gray-steel;
             filter: grayscale(80%);
-            background-image: url('../img/btn-bg-off.png');
         }
 
         .icon{
