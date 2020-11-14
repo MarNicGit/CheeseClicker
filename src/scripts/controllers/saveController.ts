@@ -19,7 +19,11 @@ export class SaveController{
      * @param game Game instance
      */
     initAutosave(){
-        this.autosaveTicker = new Ticker(()=>{this.saveGame(this.game);}, 5*60*1000); //5 minutes
+        this.autosaveTicker = new Ticker(()=>{
+            if(this.game.options.autosave){
+                this.saveGame(this.game);
+            }
+        }, 5*60*1000); //5 minutes
     }
 
     loadGame(){
@@ -34,6 +38,8 @@ export class SaveController{
             loadedSave = JSON.parse(existingSave);
 
             this.game.unitsRaw = loadedSave.unitsRaw;
+            this.game.options = loadedSave.options;
+            this.game.startedSessionAt = loadedSave.startedSessionAt;
 
             for (let key in loadedSave.clickerCollection) {
                 if (Object.prototype.hasOwnProperty.call(loadedSave.clickerCollection, key)) {
@@ -77,6 +83,8 @@ export class SaveController{
 
         this.game.unitsRaw = 0;
         this.game.baseMultiplier = 1;
+
+        this.game.startedSessionAt = Date.now();
 
         console.log(`Savegame wiped!`);
     }

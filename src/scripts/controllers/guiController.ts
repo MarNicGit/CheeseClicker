@@ -11,19 +11,19 @@ export class GuiController{
     clickBtn: HTMLElement;
     counterLbl: HTMLElement;
     saveBtn: HTMLElement;
-    resetSaveBtn: HTMLElement;
+    // resetSaveBtn: HTMLElement;
     buttonContainer: HTMLElement;
     secLbl: HTMLElement;
     spawnModalBtn: HTMLElement;
 
     modalController: ModalController;
+    optionsBtn: HTMLElement;
 
     constructor(public game:Game){
         this.setElements();
         this.registerListeners();
 
         this.modalController = new ModalController(game);
-        // this.initTicker();
     }
 
     setElements(){
@@ -31,15 +31,14 @@ export class GuiController{
         this.saveBtn = document.getElementById('saveBtn');
         this.counterLbl = document.getElementById('counterLbl');
         this.secLbl = document.getElementById('secLbl');
-        this.resetSaveBtn = document.getElementById('resetSaveBtn');
         this.buttonContainer = document.getElementById('upgradeContainer');
-        this.spawnModalBtn = document.getElementById('spawnModal');
+        this.optionsBtn = document.getElementById('optionsBtn');
     }
 
     registerListeners() {
         this.clickBtn.addEventListener('click', () => this.game.click());
         this.saveBtn.addEventListener('click', () => this.game.saveController.saveGame());
-        this.resetSaveBtn.addEventListener('click', () => this.game.saveController.resetGame());
+        this.optionsBtn.addEventListener('click', ()=> this.modalController.renderOptionsModal());
 
         this.buttonContainer.addEventListener('click', (e: Event) => {
             if(e.target == this.buttonContainer) return;
@@ -51,15 +50,13 @@ export class GuiController{
                 this.game.buyClicker(ClickerType[type]);
             }
         },false);
-
-        // this.spawnModalBtn.addEventListener('click', ()=> this.modalController.renderOptionsModal());
     }
 
     updateState(){
         let prevUnitValue = this.counterLbl.innerText;
         let units = this.game.units;
         if(prevUnitValue != units.toPretty()){
-            this.counterLbl.innerText = units.toPretty(true);
+            this.counterLbl.innerText = units.toPretty(this.game.options.useShortLabels);
         }
 
         this.updateButtons();
@@ -69,8 +66,7 @@ export class GuiController{
     updateCheesePerSecLabel() {
         let cheesePerSec = this.game.clickers.getIncrement() * (1000 / this.game.TICKER_INTERVAL);
         let element = this.secLbl;
-        let lbl = cheesePerSec.toPretty(true);
-        //if(lbl.endsWith('.0')) lbl = lbl.replace('.0','');
+        let lbl = cheesePerSec.toPretty(this.game.options.useShortLabels);
 
         let label = `${lbl} per sec`;
 

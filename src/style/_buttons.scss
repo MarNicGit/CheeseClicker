@@ -1,13 +1,19 @@
 @use 'vars' as *;
 
 .btn{
-    $size: 20px;
+    $size: 40px;
 
     height: $size;
     width: $size;
-    padding:2px;
+    padding:0px;
     background-image: url('../img/icon-btn.png');
+    background-color: transparent;
     border: none;
+    user-select: none;
+
+    &:focus{
+        outline: none;
+    }
 
     &:hover{
         background-image: url('../img/icon-btn-hover.png');
@@ -17,11 +23,18 @@
         background-image: url('../img/icon-btn-active.png');
     }
 
-    .icon{
-        $iconSize: 16px;
+    &:hover{
+        .icon{
+            filter: brightness(1.2);
+        }
+    }
 
-        height: $iconSize;
-        width: $iconSize;
+    .icon{
+        $iconSize: 32px;
+
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
         background-position: center;
     }
 
@@ -30,7 +43,7 @@
         height: 72px;
         width: 192px;
         background-color: #7d7071;
-        background-image: url('../img/btn-bg.svg');
+        background-image: url('../img/btn-bg.png');
         cursor: pointer;
         user-select: none;
         text-align: center;
@@ -39,18 +52,18 @@
         justify-content: center;
         &:hover{
             background-color: #a0938e;
-            background-image: url('../img/btn-bg-hover.svg');
+            background-image: url('../img/btn-bg-hover.png');
         }
 
         &:active{
             background-color: #7d7071;
-            background-image: url('../img/btn-bg.svg');
+            background-image: url('../img/btn-bg.png');
         }
 
         &[disabled="true"]{
             pointer-events: none;
             filter: grayscale(80%);
-            background-image: url('../img/btn-bg-off.svg');
+            background-image: url('../img/btn-bg-off.png');
         }
 
         .icon{
@@ -63,7 +76,7 @@
 
             @each $icon in $icons {
                 &-#{$icon}{
-                    background-image: url('../img/icon-#{$icon}.svg');
+                    background-image: url('../img/icon-#{$icon}.png');
                 }
             }
         }
@@ -91,6 +104,12 @@
                 top: 0.5em;
             }
         }
+    }
+}
+
+#optionsBtn{
+    .icon{
+        background-image: url('../img/icon-gear.png')
     }
 }
 
